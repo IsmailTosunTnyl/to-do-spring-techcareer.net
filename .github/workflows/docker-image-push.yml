@@ -9,9 +9,6 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    env:
-      TIMESTAMP_TAG: ${{ steps.set-timestamp.outputs.timestamp_tag }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
