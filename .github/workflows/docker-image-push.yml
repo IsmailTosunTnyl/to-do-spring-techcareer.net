@@ -48,4 +48,4 @@ jobs:
             docker stop springtodo-techcareer || true
             docker rm springtodo-techcareer || true
             docker rmi ismailtosun/springtodo-techcareer || true
-            docker run -d -p 4015:80 --name reactapp ismailtosun/springtodo-techcareer:latest
+            docker run -d -p 4015:80 --name springtodo-techcareer ismailtosun/springtodo-techcareer:latest
