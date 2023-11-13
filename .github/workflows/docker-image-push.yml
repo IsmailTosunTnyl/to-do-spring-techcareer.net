@@ -17,7 +17,10 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t ismailtosun/springtodo-techcareer:latest .
+        run: |
+          docker build -t ismailtosun/springtodo-techcareer:latest .
+          # Apply a unique tag based on the current timestamp
+          docker tag ismailtosun/springtodo-techcareer:latest ismailtosun/springtodo-techcareer:$(date +%Y%m%d%H%M%S)
 
       - name: Push Docker image to Docker Hub
         run: docker push ismailtosun/springtodo-techcareer:latest && docker push ismailtosun/springtodo-techcareer:$(date +%Y%m%d%H%M%S)
