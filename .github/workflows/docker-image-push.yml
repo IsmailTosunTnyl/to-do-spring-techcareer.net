@@ -9,9 +9,16 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    env:
+      TIMESTAMP_TAG: ${{ steps.set-timestamp.outputs.timestamp_tag }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set timestamp tag
+        id: set-timestamp
+        run: echo "TIMESTAMP_TAG=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
       - name: Login to Docker Hub
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
@@ -19,8 +26,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ismailtosun/springtodo-techcareer:latest .
-          # Apply a unique tag based on the current timestamp
-          docker tag ismailtosun/springtodo-techcareer:latest ismailtosun/springtodo-techcareer:$(date +%Y%m%d%H%M%S)
+          # Apply the stored timestamp tag
+          docker tag ismailtosun/springtodo-techcareer:latest ismailtosun/springtodo-techcareer:${{ env.TIMESTAMP_TAG }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push ismailtosun/springtodo-techcareer:latest && docker push ismailtosun/springtodo-techcareer:$(date +%Y%m%d%H%M%S)
+        run: docker push ismailtosun/springtodo-techcareer:latest && docker push ismailtosun/springtodo-techcareer:${{ env.TIMESTAMP_TAG }}
