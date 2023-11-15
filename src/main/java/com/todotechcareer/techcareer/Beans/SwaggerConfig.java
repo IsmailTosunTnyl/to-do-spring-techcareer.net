@@ -14,13 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-    // FIRST
-    public void swaggerOpenApiBeforeBeanMethod() {
-        log.info("swagger Open Api Before Bean başladı");
-        System.out.println("swagger Open Api Before Bean başladı");
-    }
 
-    // OpenAPI
     @Bean
     public OpenAPI swaggerOpenApiMethod() {
         return new OpenAPI().info(
@@ -40,10 +34,5 @@ public class SwaggerConfig {
         );
     }
 
-    // LAST
-    public void swaggerOpenApiAfterBeanMethod() {
-        log.info("swagger Open Api After Bean bitti");
-        System.out.println("swagger Open Api After Bean bitti");
-    }
-} //end class
+}
 
