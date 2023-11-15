@@ -1,6 +1,6 @@
 # To-Do List Uygulaması (Backend) 📑
 
-Bu To-Do List uygulamasının backend tarafı, Spring framework kullanılarak geliştirilmiştir. Frontend tarafı için [bu linkteki reposu](link-to-frontend-repo) ziyaret edebilirsiniz.
+Bu To-Do List uygulamasının backend tarafı, Spring framework kullanılarak geliştirilmiştir. Frontend tarafı için [bu linkteki reposu](https://github.com/IsmailTosunTnyl/to-do-react-techcareer.net) ziyaret edebilirsiniz.
 
 ## Özellikler
 
