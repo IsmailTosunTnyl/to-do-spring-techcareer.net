@@ -1,4 +1,4 @@
-package com.todotechcareer.techcareer.Controllers;
+package com.todotechcareer.techcareer.Beans;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
