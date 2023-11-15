@@ -8,11 +8,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Log4j2 // for log
+@Log4j2
 
-// http://localhost:4444/swagger-ui.html
 
-// @Configuration: Spring Boota , Classın Bean nesnesi olması için kullanıyoruz.
 @Configuration
 public class SwaggerConfig {
 
