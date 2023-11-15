@@ -32,7 +32,7 @@ Canlı demo için [bu linki](http://ismailtosun.net:4015/) kullanabilirsiniz.
 1. Docker Container dosyasını [buraya](ismailtosun/springtodo-techcareer:lastest) tıklayarak indirin ya da
 2. Bu komutu çalıştırın ve istediğiniz port'u belirtin:
    ```bash
-   docker run -p 3000:3000 ismailtosun/springtodo-techcareer:lastest
+   docker run -p 8082:8082 ismailtosun/springtodo-techcareer:lastest
    ```
 
 ### Proje Dosyalarını Kullanarak
