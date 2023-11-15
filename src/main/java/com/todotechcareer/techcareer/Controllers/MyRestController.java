@@ -7,22 +7,28 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.util.List;
 import java.util.Map;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @CrossOrigin(maxAge = 3600)
 @RequestMapping("/api")
-public class RestController {
+@Valid
+@Tag(name = "ToDo API", description = "ToDo API Rest Controller")
+public class MyRestController {
 
     private ToDoRepository toDoRepository;
 
     @Autowired
-    public RestController(ToDoRepository toDoRepository) {
+    public MyRestController(ToDoRepository toDoRepository) {
         this.toDoRepository = toDoRepository;
     }
 
@@ -45,10 +51,9 @@ public class RestController {
                             examples = @ExampleObject(value = "Internal Server Error")))
     })
     @GetMapping("/todo")
-    public List<ToDo> getToDo() {
-        return toDoRepository.findAll();
+    public ResponseEntity<List<ToDo>> getToDos() {
+        return ResponseEntity.status(200).body(toDoRepository.findAll());
     }
-
 
     // Post new ToDo
     @Operation(summary = "Post new ToDo")
@@ -59,9 +64,16 @@ public class RestController {
                             examples = @ExampleObject(value = "Internal Server Error")))
     })
     @PostMapping("/todo")
-    public ToDo saveToDo(@RequestBody ToDo toDo) {
-        toDoRepository.save(toDo);
-        return toDo;
+    public ResponseEntity<?> saveToDo( @Valid @RequestBody  ToDo toDo) {
+
+        try {
+            ToDo t = toDoRepository.save(toDo);
+            return ResponseEntity.status(200).body(t);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+
     }
 
 

@@ -43,9 +43,7 @@ jobs:
       
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${HOSTNAME} 
+          ssh -o StrictHostKeyChecking=no -i private_key ${HOSTNAME} "docker stop springtodo-techcareer || true && docker rm springtodo-techcareer || true && docker rmi ismailtosun/springtodo-techcareer || true && docker pull ismailtosun/springtodo-techcareer:latest && docker run -d -p 4015:8082 --name springtodo-techcareer --env MYSQL_USER=${{ secrets.MYSQL_USER }} --env MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} ismailtosun/springtodo-techcareer:latest"
 
-            docker stop springtodo-techcareer || true
-            docker rm springtodo-techcareer || true
-            docker rmi ismailtosun/springtodo-techcareer || true
-            docker run -d -p 4015:80 --name springtodo-techcareer ismailtosun/springtodo-techcareer:latest
+
+         
